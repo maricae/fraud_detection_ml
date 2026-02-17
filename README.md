@@ -1,49 +1,127 @@
-# Detecção de fraudes em transações de cartão de crédito: análise de modelos de machine learning.
+# Detecção de Fraudes em Transações de Cartão de Crédito  
+## Comparação de Modelos Supervisionados e Tratamento de Classes Desbalanceadas
 
-> *Trabalho de Conclusão de Curso (TCC) apresentado e aprovado no MBA em Data Science e Analytics da USP/Esalq, com nota 9,5.*
+> Trabalho de Conclusão de Curso (MBA em Data Science e Analytics – USP/Esalq)  
+> Nota: 9,5
 
-O crescimento do uso de cartões de crédito aumentou a incidência de fraudes financeiras, tornando essencial o desenvolvimento de soluções eficazes para sua detecção. Este trabalho teve como objetivo desenvolver e avaliar modelos de aprendizado de máquina para identificar transações fraudulentas com maior eficiência e precisão. 
+---
 
-Para isso, foram utilizados os algoritmos K-Nearest Neighbors (KNN), Random Forest e Gradient Boosting, treinados e comparados por meio das métricas precisão, recall e F-score. A metodologia envolveu a seleção das variáveis preditoras mais relevantes, o balanceamento da base de dados para lidar com a desproporção entre transações fraudulentas e não fraudulentas, além da análise do impacto dessas estratégias no desempenho dos modelos. 
+## ➡️ Objetivo do Projeto
 
-Os resultados demonstraram que o algoritmo KNN apresentou um melhor equilíbrio entre precisão e recall, mostrando-se mais adequados para a detecção de fraudes. Conclui-se que abordagens baseadas em aprendizado de máquina podem aprimorar a segurança dos sistemas financeiros, reduzindo perdas e aumentando a eficiência na identificação de transações suspeitas.
+O crescimento das transações digitais ampliou significativamente o risco de fraudes financeiras. Este projeto tem como objetivo desenvolver e comparar modelos de Machine Learning capazes de identificar transações fraudulentas em um cenário altamente desbalanceado.
 
-## 🎲 Fonte dos Dados:
+Mais do que apenas treinar modelos, o foco está em:
 
-A base de dados utilizada neste estudo foi coletada pela Universidade Livre de Bruxelas (ULB) e contém transações com cartão de crédito realizadas por usuários europeus em setembro de 2013. O conjunto de dados é composto por 284.807 transações, das quais apenas 492 são fraudes, representando apenas 0,172% do total, o que torna o problema altamente desbalanceado.
+- Avaliar o impacto do desbalanceamento de classes
+- Comparar desempenho entre diferentes algoritmos
+- Analisar trade-offs entre precisão e recall
+- Discutir implicações práticas na detecção de fraude
 
-A base de dados é composta por 31 colunas, das quais 28 são variáveis numéricas transformadas por Análise de Componentes Principais (PCA).
+## ➡️ Fonte dos Dados:
 
-O csv do projeto você encontra em: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
-## 🧠 Tecnologias e Bibliotecas Utilizadas:
+A base utilizada foi disponibilizada pela Universidade Livre de Bruxelas (ULB) e está disponível no Kaggle:
 
-- **Linguagem**  
-  - Python  
+🔗 https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
-- **Manipulação e Análise de Dados**  
-  - Pandas  
-  - NumPy  
+Características principais:
 
-- **Visualização de Dados**  
-  - Matplotlib  
-  - Seaborn  
+- 284.807 transações
+- 492 fraudes
+- Apenas **0,172%** de registros fraudulentos
+- 28 variáveis numéricas transformadas via PCA
+- Variável alvo binária (`Class`)
 
-- **Pré-processamento**  
-  - StandardScaler (Scikit-learn)  
-  - RobustScaler (Scikit-learn)  
+Trata-se de um problema clássico de classificação binária com severo desbalanceamento.
 
-- **Testes Estatísticos**  
-  - Shapiro-Wilk (SciPy)  
-  - Kolmogorov-Smirnov (SciPy)  
+## ➡️ Desafios do Problema
 
-- **Modelagem e Machine Learning**  
-  - Train Test Split (Scikit-learn)  
-  - Random Forest Classifier (Scikit-learn)  
-  - Gradient Boosting Classifier (Scikit-learn)  
-  - K-Nearest Neighbors Classifier (Scikit-learn)  
+- Forte desbalanceamento entre classes
+- Necessidade de minimizar falsos negativos (fraudes não detectadas)
+- Trade-off entre bloqueio indevido de clientes legítimos e perda financeira
 
-- **Métricas de Avaliação**  
-  - Precision Score (Scikit-learn)  
-  - Recall Score (Scikit-learn)  
-  - F1-Score (Scikit-learn)  
+A escolha das métricas de avaliação foi guiada por essas características.
+
+## ➡️ Metodologia
+
+### 1. Pré-processamento
+
+- Análise exploratória dos dados
+- Padronização e normalização das variáveis
+- Tratamento do desbalanceamento
+- Separação treino/teste
+
+### 2. Modelos Avaliados
+
+- K-Nearest Neighbors (KNN)
+- Random Forest
+- Gradient Boosting
+
+### 3. Métricas de Avaliação
+
+- Precision
+- Recall
+- F1-Score
+
+O foco principal foi avaliar o equilíbrio entre precisão e recall, considerando que:
+
+- Recall alto reduz fraudes não detectadas
+- Precision alta reduz bloqueios indevidos
+
+## ➡️ Resultados
+
+Os modelos apresentaram desempenhos distintos frente ao desbalanceamento da base.
+
+O KNN demonstrou melhor equilíbrio entre precisão e recall dentro do escopo analisado, apresentando desempenho competitivo na identificação de fraudes.
+
+A análise evidenciou que:
+
+- O tratamento adequado do desbalanceamento impacta significativamente os resultados.
+- A escolha da métrica deve considerar o custo associado a cada tipo de erro.
+- Accuracy não é uma métrica adequada para este tipo de problema.
+
+## ➡️ Discussões Técnicas
+
+- Problemas desbalanceados exigem métricas apropriadas.
+- O uso exclusivo de accuracy pode mascarar baixo desempenho na classe minoritária.
+- A seleção de modelo deve considerar não apenas performance estatística, mas impacto prático.
+
+Extensões possíveis incluem:
+
+- Análise de curva ROC e Precision-Recall
+- Ajuste de threshold de decisão
+- Matriz de custo financeiro
+- Modelos baseados em Deep Learning
+
+## ➡️ Tecnologias Utilizadas
+
+### Linguagem
+- Python
+
+### Manipulação e Análise
+- Pandas
+- NumPy
+
+### Visualização
+- Matplotlib
+- Seaborn
+
+### Pré-processamento
+- StandardScaler (Scikit-learn)
+- RobustScaler (Scikit-learn)
+
+### Modelagem
+- KNeighborsClassifier
+- RandomForestClassifier
+- GradientBoostingClassifier
+
+### Avaliação
+- Precision
+- Recall
+- F1-Score
+
+## ➡️ Conclusão
+
+Modelos de Machine Learning podem auxiliar significativamente na identificação de fraudes financeiras, especialmente quando avaliados com métricas apropriadas para dados desbalanceados.
+
+A escolha do modelo ideal depende do contexto operacional e dos custos associados a falsos positivos e falsos negativos.
